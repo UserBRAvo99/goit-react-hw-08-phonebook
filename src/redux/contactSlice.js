@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
 import {
   fetchAddContact,
   fetchContacts,
