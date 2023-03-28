@@ -65,14 +65,14 @@ function Phonebook() {
   };
   return (
     <div className={style.wrapper}>
-      <h2 className={style.title}>Phonebook</h2>
+      <h2 className={style.title}>Add contact</h2>
       <FormPhonebook
         submit={formOnSubmitBtn}
         name={name}
         phone={phone}
         change={handleInputChange}
       />
-      <div>
+      <div className={style.contacts}>
         <h2 className={style.title}>Contacts</h2>
         <Filter />
         {isLoading && <Loader />}
