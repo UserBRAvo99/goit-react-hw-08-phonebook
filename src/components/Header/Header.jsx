@@ -1,3 +1,4 @@
+import UserMenu from 'components/UserMenu';
 import { NavLink } from 'react-router-dom';
 import style from './header.module.scss';
 
@@ -11,6 +12,9 @@ function Header() {
         <NavLink to="/contacts" className={style.title}>
           Contacts
         </NavLink>
+      </div>
+      <div>
+        <UserMenu />
       </div>
       <div>
         <NavLink to="/login" className={style.title}>

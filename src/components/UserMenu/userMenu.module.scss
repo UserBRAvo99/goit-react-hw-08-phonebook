@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph {
+  color: white;
+  font-size: 18px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.btn {
+  max-width: 150px;
+  padding: 0 10px;
+  height: 30px;
+  background-color: palevioletred;
+  border-radius: 10px;
+  border: transparent;
+  font-size: 18px;
+  margin: 0 auto;
+  cursor: pointer;
+}
