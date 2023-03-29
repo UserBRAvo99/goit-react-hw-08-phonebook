@@ -24,11 +24,13 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isLoading ? (
-    <div className={style.loaderApp}>
-      <Loader />
-    </div>
-  ) : (
+  // return
+  // isLoading ? (
+  //   <div className={style.loaderApp}>
+  //     <Loader />
+  //   </div>
+  // ) :
+  return (
     <div>
       <Routes>
         <Route element={<Layout />}>
