@@ -33,7 +33,6 @@ export const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />}></Route>
-          {/* <Route path="/contacts" element={<Phonebook />}></Route> */}
           <Route
             path="/contacts"
             element={
