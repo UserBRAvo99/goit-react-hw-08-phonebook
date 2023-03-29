@@ -1,5 +1,5 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import persistReducer from 'redux-persist/es/persistReducer';
+import { createSlice } from '@reduxjs/toolkit';
+
 import {
   fetchAddContact,
   fetchContacts,
@@ -45,10 +45,9 @@ export const contactsSlice = createSlice({
       state.contacts.isLoading = true;
     },
     [fetchAddContact.fulfilled](state, action) {
-      console.log(action.payload.text);
       state.contacts.isLoading = false;
       state.contacts.error = null;
-      state.contacts.items.push(action.payload);
+      state.contacts.items.unshift(action.payload);
     },
     [fetchAddContact.rejected](state, action) {
       state.contacts.isLoading = false;

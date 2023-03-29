@@ -1,23 +1,32 @@
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
 import style from './login.module.scss';
 
 function Login() {
+  const dispatch = useDispatch();
+
+  const handleSubmitFormLogin = event => {
+    event.preventDefault();
+
+    const formTarget = event.target;
+    const email = formTarget.email.value;
+    const password = formTarget.password.value;
+
+    dispatch(logIn({ email, password }));
+
+    event.target.reset();
+  };
   return (
     <div className={style.box}>
-      <form
-        action="#"
-        // onSubmit={'submit'}
-        className={style.form}
-      >
+      <form action="#" onSubmit={handleSubmitFormLogin} className={style.form}>
         <label className={style.label}>
-          <p className={style.title}>Name</p>
+          <p className={style.title}>Email</p>
           <input
             className={style.input}
             type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            name="email"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             required
-            // value={'name'}
-            // onChange={'change'}
             placeholder="Your name"
           />
         </label>
@@ -28,8 +37,6 @@ function Login() {
             type="password"
             name="password"
             required
-            // value={'phone'}
-            // onChange={'change'}
             placeholder="Your password"
           />
         </label>

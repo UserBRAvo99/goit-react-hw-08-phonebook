@@ -6,25 +6,27 @@ import FormPhonebook from 'components/FormPhonebook';
 import Contacts from 'components/Contacts';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectLoading } from 'redux/selectors';
-import { fetchAddContact, fetchContacts } from 'redux/operations';
+import { selectContacts, selectLoading } from 'redux/contacts/selectors';
+import { fetchAddContact, fetchContacts } from 'redux/contacts/operations';
 
 import style from './phonebook.module.scss';
 import Loader from 'components/Loader';
+import { selectIsLoggedIn } from 'redux/auth/selector';
 
 function Phonebook() {
   const userContacts = useSelector(selectContacts);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const isLoading = useSelector(selectLoading);
 
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (isLoggedIn) dispatch(fetchContacts());
+  }, [dispatch, isLoggedIn]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -34,7 +36,7 @@ function Phonebook() {
         setName(value);
         break;
       case 'phone':
-        setPhone(value);
+        setNumber(value);
         break;
       default:
         return;
@@ -53,7 +55,7 @@ function Phonebook() {
     dispatch(
       fetchAddContact({
         name: name.trim(),
-        phone: phone.trim(),
+        number: number.trim(),
       })
     );
     resetFormInput();
@@ -61,7 +63,7 @@ function Phonebook() {
 
   const resetFormInput = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
   return (
     <div className={style.wrapper}>
@@ -69,7 +71,7 @@ function Phonebook() {
       <FormPhonebook
         submit={formOnSubmitBtn}
         name={name}
-        phone={phone}
+        number={number}
         change={handleInputChange}
       />
       <div className={style.contacts}>

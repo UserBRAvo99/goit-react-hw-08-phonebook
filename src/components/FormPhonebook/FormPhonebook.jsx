@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import style from './formPhonebook.module.scss';
 
-function FormPhonebook({ submit, name, phone, change }) {
+function FormPhonebook({ submit, name, number, change }) {
   return (
     <div className={style.box}>
       <form action="#" onSubmit={submit} className={style.form}>
@@ -30,7 +29,7 @@ function FormPhonebook({ submit, name, phone, change }) {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={phone}
+            value={number}
             onChange={change}
             placeholder="Your number"
           />
@@ -40,12 +39,5 @@ function FormPhonebook({ submit, name, phone, change }) {
     </div>
   );
 }
-
-FormPhonebook.propTypes = {
-  submit: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-  change: PropTypes.func.isRequired,
-};
 
 export default FormPhonebook;

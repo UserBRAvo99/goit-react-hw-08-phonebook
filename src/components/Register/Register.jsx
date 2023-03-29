@@ -1,11 +1,27 @@
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 import style from './register.module.scss';
 
 function Register() {
+  const dispatch = useDispatch();
+
+  const handleSubmitFormRegister = event => {
+    event.preventDefault();
+
+    const formTarget = event.target;
+    const name = formTarget.name.value;
+    const email = formTarget.email.value;
+    const password = formTarget.password.value;
+
+    dispatch(register({ name, email, password }));
+
+    event.target.reset();
+  };
   return (
     <div className={style.box}>
       <form
         action="#"
-        // onSubmit={'submit'}
+        onSubmit={handleSubmitFormRegister}
         className={style.form}
       >
         <label className={style.label}>
@@ -14,10 +30,8 @@ function Register() {
             className={style.input}
             type="text"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             required
-            // value={'name'}
-            // onChange={'change'}
             placeholder="Your name"
           />
         </label>
@@ -25,12 +39,10 @@ function Register() {
           <p className={style.title}>Email</p>
           <input
             className={style.input}
-            type="mail"
-            name="mail"
+            type="email"
+            name="email"
             pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
             required
-            // value={'name'}
-            // onChange={'change'}
             placeholder="Your email"
           />
         </label>
@@ -41,8 +53,6 @@ function Register() {
             type="password"
             name="password"
             required
-            // value={'phone'}
-            // onChange={'change'}
             placeholder="Your password"
           />
         </label>
